@@ -8,8 +8,8 @@
 #define PUSH2_BULK_EP_OUT 0x01
 #define TRANSFER_TIMEOUT 1000 // ms
 #define LINE_SIZE 2048
-#define LINES_PER_BUFFER 8
-#define BUFFER_COUNT 3
+#define LINES_PER_BUFFER 1
+#define BUFFER_COUNT 1
 #define BUFFER_SIZE LINES_PER_BUFFER * LINE_SIZE
 
 static unsigned char frame_header[16] = {
@@ -27,7 +27,7 @@ void test() {
     unsigned char frame_buffer[BUFFER_COUNT * BUFFER_SIZE];
 
     for (size_t i = 0; i < BUFFER_SIZE; i++) {
-	frame_buffer[i] = 128;
+	frame_buffer[i] = i;
     }
 
     libusb_device_handle* push2 = open_push2_device();
